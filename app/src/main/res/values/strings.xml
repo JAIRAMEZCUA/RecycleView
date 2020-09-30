@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">RecycleView</string>
+    <string name="id_json">id</string>
+    <string name="name_json">name</string>
+    <string name="username_json">username</string>
+    <string name="email_json">email</string>
+    <string name="address_json">address</string>
+    <string name="phone_json">phone</string>
+    <string name="website_json">website</string>
+    <string name="company_json">company</string>
+    <string name="street_addr_json">street</string>
+    <string name="suite_addr_json">suite</string>
+    <string name="city_addr_json">city</string>
+    <string name="zipcode_addr_json">zipcode</string>
+    <string name="geo_addr_json">geo</string>
+    <string name="lat_geo_addr_json">lat</string>
+    <string name="lng_geo_addr_json">lng</string>
+    <string name="name_company_json">name</string>
+    <string name="catchPhrase_company_json">catchPhrase</string>
+    <string name="bs_company_json">bs</string>
+</resources>
