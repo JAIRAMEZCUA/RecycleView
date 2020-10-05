@@ -17,14 +17,14 @@ public class Usuario {
 
     public Usuario(JSONObject jsonObject, Context context) {
         try {
-            this.id = jsonObject.getInt(context.getString(R.string.id_json));
-            this.name = jsonObject.getString(context.getString(R.string.name_json));
-            this.username = jsonObject.getString(context.getString(R.string.username_json));
-            this.email = jsonObject.getString(context.getString(R.string.email_json));
-            this.address = new Address(jsonObject.getJSONObject(context.getString(R.string.address_json)),context);
-            this.phone = jsonObject.getString(context.getString(R.string.phone_json));
-            this.website = jsonObject.getString(context.getString(R.string.website_json));;
-            this.company = new Company(jsonObject.getJSONObject(context.getString(R.string.company_json)),context);
+            this.id         = jsonObject.getInt(context.getString(R.string.id_json));
+            this.name       = jsonObject.getString(context.getString(R.string.name_json));
+            this.username   = jsonObject.getString(context.getString(R.string.username_json));
+            this.email      = jsonObject.getString(context.getString(R.string.email_json));
+            this.address    = new Address(jsonObject.getJSONObject(context.getString(R.string.address_json)),context);
+            this.phone      = jsonObject.getString(context.getString(R.string.phone_json));
+            this.website    = jsonObject.getString(context.getString(R.string.website_json));;
+            this.company    = new Company(jsonObject.getJSONObject(context.getString(R.string.company_json)),context);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -32,14 +32,14 @@ public class Usuario {
     }
 
     public Usuario(int id, String name, String username, String email, Address address, String phone, String website, Company company) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.address = address;
-        this.phone = phone;
-        this.website = website;
-        this.company = company;
+        this.id         = id;
+        this.name       = name;
+        this.username   = username;
+        this.email      = email;
+        this.address    = address;
+        this.phone      = phone;
+        this.website    = website;
+        this.company    = company;
     }
 
     public int getId() {

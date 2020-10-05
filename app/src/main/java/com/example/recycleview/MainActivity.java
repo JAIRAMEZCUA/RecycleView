@@ -1,6 +1,7 @@
 package com.example.recycleview;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,14 +24,16 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView mRecicleView;
     WordListAdapter mAdapter;
     ArrayList<Usuario> listUsers = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*String[] words = new String[20];
-        for(int i = 0; i<words.length; i++) words[i] = "Word "+i;*/
         setContentView(R.layout.activity_main);
+
         RequestQueue queue = Volley.newRequestQueue(this);
         String url3 = "https://jsonplaceholder.typicode.com/users";
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url3, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         queue.add(jsonArrayRequest);
 
         mRecicleView = findViewById(R.id.recyclerView);
+        mRecicleView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         mAdapter = new WordListAdapter(this, listUsers);
         mRecicleView.setAdapter(mAdapter);
         mRecicleView.setLayoutManager(new LinearLayoutManager(this));

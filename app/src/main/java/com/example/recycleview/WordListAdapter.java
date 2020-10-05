@@ -16,7 +16,9 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.MiView
     Context context;
     ArrayList<Usuario> usuarios;
 
+    //View Holder es una vista de todo evento del fragment
     public WordListAdapter(Context context, ArrayList<Usuario> titulos) {
+        
         this.context = context;
         this.usuarios = titulos;
     }
@@ -28,6 +30,9 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.MiView
         return new MiViewHolder(view);
     }
 
+
+
+    //Un bind view es para pasarla a todos los elementos o datos al recycle
     @Override
     public void onBindViewHolder(@NonNull MiViewHolder holder, int position) {
         Usuario user = usuarios.get(position);
@@ -35,16 +40,16 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.MiView
         holder.txv.setText(titulo);
     }
 
-    /*@Override
-    public void onBindViewHolder(@NonNull WordListAdapter holder, int position) {
 
-    }*/
-
+    //es para pasar el tamaño o numero de elementos
     @Override
     public int getItemCount() {
         return usuarios.size();
     }
 
+
+
+    //esta clase es para insertar todos los elemntos del row o hijo
     class MiViewHolder extends RecyclerView.ViewHolder{
         TextView txv;
         public MiViewHolder(View itemView){
