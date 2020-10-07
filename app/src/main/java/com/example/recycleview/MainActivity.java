@@ -5,7 +5,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,11 +25,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
     RecyclerView mRecicleView;
     WordListAdapter mAdapter;
     ArrayList<Usuario> listUsers = new ArrayList<>();
 
+    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +61,56 @@ public class MainActivity extends AppCompatActivity {
         });
         queue.add(jsonArrayRequest);
 
+
         mRecicleView = findViewById(R.id.recyclerView);
         mRecicleView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         mAdapter = new WordListAdapter(this, listUsers);
-        mRecicleView.setAdapter(mAdapter);
         mRecicleView.setLayoutManager(new LinearLayoutManager(this));
+        /*
+        mAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),
+                        "Selecciono la opion"+listUsers.get(mRecicleView.getChildAdapterPosition(v))
+                                .getId(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+         */
+        mRecicleView.setAdapter(mAdapter);
+
+        mRecicleView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecicleView, new RecyclerTouchListener.ClickListener() {
+            @Override // Un toque sencillo
+            public void onClick(View view, int position) {
+                Toast.makeText(getApplicationContext(),
+                        "Selecciono la opcion"+listUsers.get(mRecicleView.getChildAdapterPosition(view))
+                                .getId(),Toast.LENGTH_LONG).show();
+            }
+
+            @Override // Un toque largo
+            public void onLongClick(View view, int position) {
+                final Usuario mascotaParaEliminar = listUsers.get(position);
+                AlertDialog dialog = new AlertDialog
+                        .Builder(MainActivity.this)
+                        .setPositiveButton("Sí, eliminar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setTitle("Confirmar")
+                        .setMessage("¿Eliminar a la mascota " + mascotaParaEliminar.getName() + "?")
+                        .create();
+                dialog.show();
+
+            }
+        }));
     }
+
 }
